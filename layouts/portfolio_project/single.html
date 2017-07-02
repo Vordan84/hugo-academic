@@ -1,0 +1,100 @@
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+<div class="pub" itemscope itemtype="http://schema.org/CreativeWork">
+
+  {{ partial "header_image.html" . }}
+
+  <div class="container pub-title">
+    <h1 itemprop="name">{{ .Title }}</h1>
+    <span class="pub-authors" itemprop="author">
+      {{ .Params.role }} ({{ .Params.timeframe }})
+    </span>
+    <span class="pull-right">
+      {{ partial "share.html" . }}
+    </span>
+  </div>
+
+</div>
+<div class="article-container">
+
+  {{ if .Params.image }}
+  <img src="{{ "/img/" | relURL }}{{ .Params.image }}" class="pub-banner" itemprop="image">
+  {{end}}
+
+  <h3>{{ i18n "summary" }}</h3>
+  <p class="pub-abstract" itemprop="text">{{ .Params.summary }}</p>
+
+  {{ if (.Params.project_types) and (ne (index .Params.project_types 0) "0") }}
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 pub-row-heading">{{ i18n "project_type" }}</div>
+        <div class="col-xs-12 col-sm-9">
+          {{ range $index, $pubtype := .Params.project_types }}
+          <a href="{{ "/portfolio_project/" | relURL }}#{{ . | urlize }}">
+            {{ index $.Site.Params.project_types (int .) }}
+          </a>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="visible-xs space-below"></div>
+  {{ end }}
+
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 pub-row-heading">{{ i18n "platforms" }}</div>
+        <div class="col-xs-12 col-sm-9">{{ .Params.platforms | markdownify }}</div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="visible-xs space-below"></div>
+
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 pub-row-heading">{{ i18n "release" }}</div>
+        <div class="col-xs-12 col-sm-9" itemprop="text">
+          {{ .Params.release_date }}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="visible-xs space-below"></div>
+
+  <div class="row" style="padding-top: 10px">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 pub-row-heading" style="line-height:34px;">{{ i18n "links" }}</div>
+        <div class="col-xs-12 col-sm-9">
+
+          {{ partial "portfolio_project_links" (dict "content" . "is_list" 0) }}
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="visible-xs space-below"></div>
+
+  <div class="space-below"></div>
+
+  <div class="article-style">{{ .Content }}</div>
+
+</div>
+
+<div class="container">
+  {{ partial "section_pager.html" . }}
+</div>
+
+{{ partial "footer_container.html" . }}
+{{ partial "footer.html" . }}

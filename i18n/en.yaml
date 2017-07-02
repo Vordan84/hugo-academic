@@ -52,6 +52,29 @@
 - id: more_talks
   translation: More Talks
 
+# Portfolio project details
+
+- id: summary
+  translation: Summary
+
+- id: platforms
+  translation: Platforms
+
+- id: project_type
+  translation: Type
+
+- id: release
+  translation: Release Date
+
+- id: role
+  translation: Role 
+
+- id: more_projects
+  translation: More Projects
+
+- id: portfolio_projects
+  translation: Projects
+
 # Publication/Talk details
 
 - id: abstract
