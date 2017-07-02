@@ -27,7 +27,7 @@
       <div id="container-publications">
         {{ range .Pages.ByDate.Reverse }}
 
-        {{ if .Params.publication_types }}
+        {{ if .Params.project_types }}
           {{ $.Scratch.Set "pubtype" (index .Params.project_types 0) }}
         {{ else }}
           {{ $.Scratch.Set "pubtype" 0 }}
