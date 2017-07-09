@@ -64,7 +64,7 @@
   translation: Type
 
 - id: release
-  translation: Release Date
+  translation: Release
 
 - id: role
   translation: Role 
